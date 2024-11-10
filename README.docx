@@ -1,0 +1,260 @@
+Certainly! Since I cannot provide a direct downloadable file in this interface, I will present the entire README content below. You can copy all the text and save it as a file named `README.txt` or `README.md` in your project directory.
+
+---
+
+## **README for Information Retrieval Project - Text Parser and Indexer**
+
+---
+
+### **Overview**
+
+This project implements a Text Parser and Indexer for Information Retrieval using the TREC data collection. It includes:
+
+- **Text Parser**: Reads and tokenizes documents, removes numbers and words containing numbers, splits on non-alphanumeric characters, converts to lowercase, removes stopwords, and applies the Porter Stemmer algorithm.
+- **Word Dictionary**: Maps each unique token to a unique numerical ID.
+- **File Dictionary**: Maps each document name to a unique numerical ID.
+- **Forward Index**: Stores a list of words for each document.
+- **Inverted Index**: Stores a list of documents for each word.
+- **Query Interface**: Allows users to query terms and retrieve documents containing them.
+
+---
+
+### **Project Structure**
+
+```
+ir_project/
+├── data/                 # Directory for TREC data files
+├── output/               # Output files will be stored here
+├── src/                  # Source code files
+│   ├── main.py           # Main script to build indexes
+│   ├── tokenizer.py      # Tokenizer class
+│   ├── stemmer.py        # PorterStemmer class
+│   ├── stopword_finder.py# Stopword finder class
+│   ├── parser.py         # TREC data parser
+│   ├── indexer.py        # Indexer class
+│   └── query.py          # Query interface script
+├── stopwords.txt         # Stopwords list
+└── README.txt            # Project documentation (this file)
+```
+
+---
+
+### **Requirements**
+
+- **Python 3.x**
+
+---
+
+### **Setup Instructions**
+
+#### **1. Download the Project**
+
+Clone or download the project repository to your local machine.
+
+#### **2. Prepare the Data Directory**
+
+Place all TREC data files in the `data` directory inside the `ir_project` folder.
+
+#### **3. Prepare the Stopwords File**
+
+Ensure that the `stopwords.txt` file is present in the `ir_project` root directory. This file should contain a list of stopwords, one per line.
+
+#### **4. Set Up the Project Structure**
+
+If you have not already set up the project structure, you can use the following commands in the Command Prompt to create the necessary folders and files:
+
+**Windows Command-Line Commands**
+
+```batch
+REM Navigate to your desired directory
+cd C:\path\to\your\workspace
+
+REM Create the main project directory
+mkdir ir_project
+cd ir_project
+
+REM Create subdirectories
+mkdir data
+mkdir output
+mkdir src
+
+REM Create the Python files
+cd src
+copy NUL main.py
+copy NUL tokenizer.py
+copy NUL stemmer.py
+copy NUL stopword_finder.py
+copy NUL parser.py
+copy NUL indexer.py
+copy NUL query.py
+
+REM Go back to the project root directory
+cd ..
+
+REM Create the stopwords.txt file
+copy NUL stopwords.txt
+
+REM Create the README file
+copy NUL README.txt
+```
+
+---
+
+### **Running the Parser and Indexer**
+
+#### **1. Navigate to the Source Directory**
+
+Open Command Prompt and navigate to the `src` directory inside the `ir_project` folder:
+
+```batch
+cd C:\path\to\ir_project\src
+```
+
+#### **2. Run the Main Script**
+
+Run the `main.py` script to parse the documents and build the indexes:
+
+```batch
+python main.py
+```
+
+This script will:
+
+- Parse the TREC data files in the `data` directory.
+- Build the word dictionary and file dictionary.
+- Create the forward index and inverted index.
+- Output the results to the `output` directory.
+
+#### **3. Outputs Generated**
+
+After running `main.py`, the following files will be generated in the `output` directory:
+
+- `parser_output.txt` - Contains the word dictionary and file dictionary.
+- `forward_index.txt` - Contains the forward index.
+- `inverted_index.txt` - Contains the inverted index.
+
+---
+
+### **Testing the Query Interface**
+
+#### **1. Run the Query Script**
+
+While still in the `src` directory, run the `query.py` script:
+
+```batch
+python query.py
+```
+
+#### **2. Enter a Term**
+
+When prompted, enter a term to search for. The term will be processed (lowercased and stemmed), and the script will search for it in the inverted index.
+
+#### **3. View Results**
+
+The script will display:
+
+- The documents that contain the term.
+- The frequency of the term in each document.
+
+**Example:**
+
+```
+Enter a term: computer
+Documents containing the term 'computer':
+Document FT911-1 (ID: 1) - Frequency: 2
+Document FT911-3 (ID: 3) - Frequency: 1
+...
+```
+
+---
+
+### **Project Files Description**
+
+#### **Source Code Files (`src/`)**
+
+- **main.py**: Main script that orchestrates the parsing of documents and building of indexes.
+- **tokenizer.py**: Contains the `Tokenizer` class responsible for tokenizing text, removing stopwords, and applying stemming.
+- **stemmer.py**: Implements the `PorterStemmer` class for stemming tokens using the Porter Stemmer algorithm.
+- **stopword_finder.py**: Contains the `StopWordFinder` class that handles the loading and checking of stopwords.
+- **parser.py**: Contains the `TRECParser` class that parses TREC-formatted documents.
+- **indexer.py**: Contains the `Indexer` class that builds the forward and inverted indexes.
+- **query.py**: Script that provides a simple query interface for searching terms.
+
+#### **Data Files**
+
+- **stopwords.txt**: Contains the list of stopwords to be removed during tokenization. Ensure this file is in the project root directory (`ir_project/`).
+
+#### **Output Files (`output/`)**
+
+- **parser_output.txt**: Contains the word dictionary (mapping of words to IDs) and file dictionary (mapping of document names to IDs).
+- **forward_index.txt**: The forward index where each document ID maps to a list of word IDs and their frequencies.
+- **inverted_index.txt**: The inverted index where each word ID maps to the documents it appears in and their frequencies.
+
+---
+
+### **Understanding the Index Files**
+
+#### **parser_output.txt**
+
+This file contains two sections:
+
+- **Word Dictionary**: Lists each unique stemmed token and its assigned unique numerical ID.
+
+  **Format:**
+
+  ```
+  Word Dictionary:
+  word1                  1
+  word2                  2
+  word3                  3
+  ...
+  ```
+
+- **File Dictionary**: Lists each document name and its assigned unique numerical ID.
+
+  **Format:**
+
+  ```
+  File Dictionary:
+  FT911-1                1
+  FT911-2                2
+  FT911-3                3
+  ...
+  ```
+
+#### **forward_index.txt**
+
+The forward index maps each document ID to the words it contains and their frequencies.
+
+**Format:**
+
+```
+docID: wordID1: freq; wordID2: freq; ...
+```
+
+**Example:**
+
+```
+1: 2: 3; 5: 1; 7: 2
+2: 1: 4; 3: 2; 6: 1
+...
+```
+
+#### **inverted_index.txt**
+
+The inverted index maps each word ID to the documents it appears in and their frequencies.
+
+**Format:**
+
+```
+wordID: docID1: freq; docID2: freq; ...
+```
+
+**Example:**
+
+```
+2: 1: 3; 2: 4; 5: 2
+3: 1: 1; 3: 2
+...
+```
+
